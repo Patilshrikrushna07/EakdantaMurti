@@ -5,6 +5,7 @@ const cors = require("cors");
 const connectDatabase = require("./config/db");
 const memberRoutes = require("./routes/memberRoutes");
 const productRoutes = require("./routes/productRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +16,7 @@ const port = process.env.PORT || "5000";
 
 connectDatabase();
 
+app.use("/api/", adminRoutes);
 app.use("/api/", memberRoutes);
 app.use("/api/", productRoutes);
 
