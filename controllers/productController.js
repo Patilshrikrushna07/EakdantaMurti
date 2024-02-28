@@ -4,20 +4,22 @@ const { errorResponse, successResponse } = require("../helpers/apiResponse");
 
 const create = asyncHandler(async (req, res) => {
   try {
-    const { name, image, description, crops, applications, methodOfUse } =
+    const { name, images, description, price,category, brand, stock_quantity,size } =
       req.body;
 
-    if (!name || !image || !description) {
+    if (!name || !images || !description || !price ||!category ||!stock_quantity || !size) {
       errorResponse({ res, message: "Please fill required fields!" });
     }
 
     const product = await Product.create({
       name,
-      image,
+      images,
       description,
-      crops,
-      applications,
-      methodOfUse,
+      price,
+      category,
+      brand,
+      stock_quantity,
+      size
     });
     if (product) {
       successResponse({
@@ -57,10 +59,10 @@ const remove = asyncHandler(async (req, res) => {
 
 const edit = asyncHandler(async (req, res) => {
   try {
-    const { name, image, description, crops, applications, methodOfUse } =
+    const {  name, images, description, price,category, brand, stock_quantity,size } =
       req.body;
 
-    if (!name || !image || !description) {
+    if (!name || !images || !description || !price ||!category ||!stock_quantity || !size) {
       errorResponse({ res, message: "Please fill required fields!" });
     }
 
@@ -68,11 +70,12 @@ const edit = asyncHandler(async (req, res) => {
       req.params.id,
       {
         name:name,
-        image:image,
+        images:images,
         description:description,
-        crops:crops,
-        applications:applications,
-        methodOfUse:methodOfUse,
+        price:price,
+        category:category,
+        stock_quantity:stock_quantity,
+        size:size
       },
       {
         new: true,

@@ -6,23 +6,33 @@ const productModel = mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
+    size: {
       type: String,
       required: true,
+    },
+    images: {
+      type: [String],
+      required: true,
+      default: [] 
     },
     description: {
       type: String,
       required: true,
     },
-    crops: {
+    price: {
+      type: Number,
+      required: true,
+    },
+    category: {
       type: String,
     },
-    applications: {
+    brand: {
       type: String,
     },
-    methodOfUse: {
-      type: String,
-    },
+    stock_quantity:{
+      type:Number,
+      required:true,
+    }
   },
   {
     timestamps: true,
