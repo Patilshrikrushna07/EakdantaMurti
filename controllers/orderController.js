@@ -101,4 +101,6 @@ const  getAll=asyncHandler(async(req,res)=>{
       errorResponse({ res, message: "Something went wrong!" });
     }
   });
+
+  
   module.exports = { placeOrder,find,getAll,edit};
