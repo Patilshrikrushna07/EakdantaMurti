@@ -106,6 +106,9 @@ const login = asyncHandler(async (req, res) => {
         data: data,
       });
     }
+    else{
+      errorResponse({ res, message: "Password not Match!" });
+    }
   } catch (error) {
     console.log(error);
     errorResponse({ res, message: "Something went wrong!" });
