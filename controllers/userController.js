@@ -215,7 +215,8 @@ const getAll = asyncHandler(async (req, res) => {
 
 const getAllOrders = asyncHandler(async (req, res) => {
   try {
-    const orders = await Orders.findById(req.params.user_id);
+    const orders = await Orders.find({ user_id: req.params.user_id });
+    console.log(orders);
     if (orders) {
       successResponse({
         res,

@@ -8,7 +8,7 @@ router.route("/login").post(login);
 router.route("/get-user-details/:id").get(protect,getSingle);
 router.route("/edit-profile-details/:id").post(protect,edit);
 router.route("/get-all-users").get(adminProtect,getAll);
-router.route("/get-user-order/:id").get(protect,getAllOrders);
+router.route("/get-user-order/:user_id").get(protect,getAllOrders);
 
 
 module.exports = router;
