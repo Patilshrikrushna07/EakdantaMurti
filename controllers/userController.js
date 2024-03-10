@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Users = require("../models/usersModel");
 const { errorResponse, successResponse } = require("../helpers/apiResponse");
 const generateToken = require("../config/generateToken");
+const Orders = require("../models/orderModel");
 
 const register = asyncHandler(async (req, res) => {
   try {
@@ -211,4 +212,22 @@ const getAll = asyncHandler(async (req, res) => {
     errorResponse({ res, message: "Something went wrong!" });
   }
 });
-module.exports = { login, register, getSingle, edit,getAll };
+
+const getAllOrders = asyncHandler(async (req, res) => {
+  try {
+    const orders = await Orders.findById(req.params.user_id);
+    if (orders) {
+      successResponse({
+        res,
+        message: "Order fetched successfully",
+        data: orders,
+      });
+    } else {
+      errorResponse({ res, message: "Orders not found!" });
+    }
+  } catch (error) {
+    console.log(error);
+    errorResponse({ res, message: "Something went wrong!" });
+  }
+});
+module.exports = { login, register, getSingle, edit,getAll,getAllOrders };
