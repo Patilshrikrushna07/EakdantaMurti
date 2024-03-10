@@ -132,4 +132,23 @@ const getAll = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { create, remove, edit, getSingle, getAll };
+const getRelatedProduct = asyncHandler(async (req, res) => {
+  try {
+    console.log(req.query.size);
+    const product = await Product.find({ size: req.query.size});
+    if (product) {
+      successResponse({
+        res,
+        message: "Related Product fetched successfully",
+        data: product,
+      });
+    } else {
+      errorResponse({ res, message: "Related Product not found!" });
+    }
+  } catch (error) {
+    console.log(error);
+    errorResponse({ res, message: "Something went wrong!" });
+  }
+});
+
+module.exports = { create, remove, edit, getSingle, getAll ,getRelatedProduct};
